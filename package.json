@@ -1,0 +1,22 @@
+{
+  "name": "momo-api",
+  "version": "1.0.0",
+  "description": "This is a package to help easily integrate momo-api into your javascript project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "momo-api",
+    "integration",
+    "javascript"
+  ],
+  "author": "sirgeorge",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  }
+}
