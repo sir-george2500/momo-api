@@ -38,8 +38,8 @@ app.post("/api", async (req, res) => {
   }
 });
 
-let apiKey;
 
+const appData ={};
 app.post("/api-key", async (req, res) => {
   try {
     const response = await createApiKey(
@@ -49,22 +49,10 @@ app.post("/api-key", async (req, res) => {
       xReferenceId,
       providerCallbackHost
     );
-    apiKey = response.apiKey;
-    res.json(apiKey);
-  } catch (error) {
-    console.error("There was a problem with the API request:", error);
-    res
-      .status(500)
-      .send({ error: "An error occurred while making the API request" });
-  }
-});
-
-let accessToken;
-
-app.post("/api-token", async (req, res) => {
-  try {   
-    // Call the createAccessToken function and store the result in the accessToken variable
-    accessToken = await createAccessToken(
+    const apiKey = response.apiKey;
+    appData.apiKey = apiKey;
+    console.log(apiKey);
+    const accessToken = await createAccessToken(
       apiKey,
       momohost,
       subscriptionKey,
@@ -79,18 +67,37 @@ app.post("/api-token", async (req, res) => {
   }
 });
 
+app.post("/api-token", async (req, res) => {
+  try {   
+    const accessToken = await createAccessToken(
+      appData.apiKey,
+      momohost,
+      subscriptionKey,
+      xReferenceId
+    );
+    appData.accessToken= accessToken.access_token;
+  } catch (error) {
+    console.error("There was a problem with the API request:", error);
+    res
+      .status(500)
+      .send({ error: "An error occurred while making the API request" });
+  }
+});
 
+//Request to pay 
 app.post("/request-to-pay", async (req, res) => {
   try {
     // You will need to get the relevant data from the request body
     const { payer, payee, amount, currency, externalId, payerNote, payeeNote } = req.body;
 
-     let callbackUrl = null; //I don't have a call back Url
+    // Retrieve the access token from your appData object
+    const accessToken = appData.accessToken;
+
     // Make the request-to-pay API call using the requestToPay function
     const momoResponse = await requestToPay(
       momohost,
       subscriptionKey,
-      callbackUrl,
+      providerCallbackHost,
       targetEnvironment,
       payer,
       payee,
@@ -99,7 +106,7 @@ app.post("/request-to-pay", async (req, res) => {
       externalId,
       payeeNote,
       payerNote,
-      accessToken.access_token
+      accessToken
     );
 
     // Handle the response appropriately
@@ -110,9 +117,6 @@ app.post("/request-to-pay", async (req, res) => {
     res.status(500).send({ error: "An error occurred while making the request-to-pay API request" });
   }
 });
-
-
-
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

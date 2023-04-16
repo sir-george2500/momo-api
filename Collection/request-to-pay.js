@@ -22,9 +22,12 @@ const requestToPay = async (
         Authorization: `Bearer ${accessToken}`,
         "X-Target-Environment": targetEnvironment,
         "Content-Type": "application/json",
-        "X-Callback-Url": callbackUrl,
       },
     };
+ //set the callbackUril if the user provide any
+    if (callbackUrl) {
+      config.headers["X-Callback-Url"] = callbackUrl;
+    }
     const requestBody = {
       amount: amount,
       currency: currency,

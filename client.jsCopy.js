@@ -25,6 +25,7 @@ const requestToPayData = {
   }
 };
 
+
 (async () => {
   try {
     const response1 = await axios.post("http://localhost:3000/api", body, { headers });
@@ -36,8 +37,9 @@ const requestToPayData = {
     const response3 = await axios.post("http://localhost:3000/api-token", body, { headers });
     console.log(response3.status + "Api Token Generated");
 
-     const response4 = await axios.post("http://localhost:3000/request-to-pay", requestToPayData);
-    console.log(response4.status + "Request to pay sent");
+    // const response4 = await axios.post("http://localhost:3000/request-to-pay", requestToPayData);
+    // console.log(response4.status + "Request to pay sent");
+
   } catch (error) {
     console.error("There was a problem with the axios operation:", error.response.status);
   }
