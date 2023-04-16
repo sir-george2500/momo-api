@@ -37,6 +37,8 @@ app.post("/api", async (req, res) => {
   }
 });
 
+
+const appData ={};
 app.post("/api-key", async (req, res) => {
   try {
     const response = await createApiKey(
@@ -47,9 +49,27 @@ app.post("/api-key", async (req, res) => {
       providerCallbackHost
     );
     const apiKey = response.apiKey;
+    appData.apiKey = apiKey;
     console.log(apiKey);
     const accessToken = await createAccessToken(
       apiKey,
+      momohost,
+      subscriptionKey,
+      xReferenceId
+    );
+    res.json(accessToken);
+  } catch (error) {
+    console.error("There was a problem with the API request:", error);
+    res
+      .status(500)
+      .send({ error: "An error occurred while making the API request" });
+  }
+});
+
+app.post("/api-token", async (req, res) => {
+  try {   
+    const accessToken = await createAccessToken(
+      appData.apiKey,
       momohost,
       subscriptionKey,
       xReferenceId

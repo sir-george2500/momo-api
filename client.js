@@ -15,6 +15,9 @@ const body = JSON.stringify({
 
     const response2 = await axios.post("http://localhost:3000/api-key", body, { headers });
     console.log(response2.status + "Api Key created");
+
+    const response3 = await axios.post("http://localhost:3000/api-token", body, { headers });
+    console.log(response3.status + "Api Token Generated");
   } catch (error) {
     console.error("There was a problem with the axios operation:", error.response.status);
   }
