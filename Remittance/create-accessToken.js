@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const createAccessToken = async (apiKey, momohost, subscriptionKey, apiUserId) => {
+const remittAccessToken = async (apiKey, momohost, subscriptionKey, apiUserId) => {
   try {
     const config = {
       headers: {
@@ -16,4 +16,4 @@ const createAccessToken = async (apiKey, momohost, subscriptionKey, apiUserId) =
   }
 };
 
-module.exports = { createAccessToken };
+module.exports = {  remittAccessToken };

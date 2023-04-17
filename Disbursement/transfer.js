@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const transfer = async (
+const disburseTransfer = async (
   momoHost,
   subscriptionKey,
   targetEnvironment,
@@ -49,4 +49,4 @@ const transfer = async (
   }
 };
 
-module.exports = { transfer };
+module.exports = { disburseTransfer };
