@@ -2,8 +2,8 @@ const express = require("express");
 require('dotenv').config();
 const app = express();
 const { v4: uuidv4 } = require("uuid");
-const { createApiUser } = require("./create-api-user");
-const { createApiKey } = require("./create-apikey");
+const { createApiUser } = require("./Apiuser/create-api-user");
+const { createApiKey } = require("./Apiuser/create-apikey");
 const { createAccessToken } = require("./Collection/create-accessToken");
 const {requestToPay}=require("./Collection/request-to-pay")
 const port = 3000;
