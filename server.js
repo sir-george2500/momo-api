@@ -5,8 +5,8 @@ const app = express();
 const { v4: uuidv4 } = require("uuid");
 const { createApiUser } = require("./Apiuser/create-api-user");
 const { createApiKey } = require("./Apiuser/create-apikey");
-const { createAccessToken } = require("./Disbursement/create-accessToken");
-const {transfer} = require('./Disbursement/transfer');
+const { createAccessToken } = require("./Remittance/create-accessToken");
+const {transfer} = require('./Remittance/transfer');
 //const {requestToPay}=require("./Collection/request-to-pay")
 const port = 3000;
 
@@ -15,7 +15,7 @@ app.use(express.json());
 const url = "https://sandbox.momodeveloper.mtn.com/v1_0/apiuser";
 const apiKeyUrl = url;
 const xReferenceId = uuidv4();
-const subscriptionKey = process.env.DISBURSEMENT_SUBCRIPTION_KEY;
+const subscriptionKey = process.env.REMITTANCE_SUBCRIPTION_KEY;
 const targetEnvironment = "sandbox";
 const providerCallbackHost =
   "https://webhook.site/7c6c8e50-bc68-41f1-9199-e7da5dac7ff3";
