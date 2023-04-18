@@ -11,4 +11,12 @@ This is a package to help easily integrate Momo API into your JavaScript project
 To install Momo API, use npm:
 
 ```bash
-npm install momo-api
+npm install momo-api 
+```
+
+##Usage
+
+To use Momo API in your project, require the service you want to use from the package:
+```javascript
+const { colAccessToken, requestToPay } = require('momo-api');
+```
