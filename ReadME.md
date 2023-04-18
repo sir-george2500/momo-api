@@ -108,7 +108,7 @@ app.post("/api-key", async (req, res) => {
 
 ## Collection API
 Getting Access Token
-Use the colAccessToken function to generate an access token for the Collection API:
+Use the `colAccessToken` function to generate an access token for the Collection API:
 ```javascript
 app.post("/api-token", async (req, res) => {
   try {
