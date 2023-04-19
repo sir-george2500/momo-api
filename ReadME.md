@@ -234,7 +234,7 @@ const transferData = {
 })();
 ```
 
-Don't forget to start the server run `node server.js` to test the client.js run `node server.js`
+Don't forget to start the server run `node server.js` to test the client.js run `node client.js`
 
 ## License
 This package is licensed under the MIT License.
